@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Universidad implements Imprimible {
+    private List<Estudiante> estudiantes;
+
+    public Universidad() {
+        estudiantes = new ArrayList<>();
+    }
+
+    public void agregarEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
+    }
+
+    public Estudiante getEstudiante(String nombre) throws EstudianteNoEncontradoException {
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getNombre().equalsIgnoreCase(nombre)) {
+                return estudiante;
+            }
+        }
+        throw new EstudianteNoEncontradoException("Estudiante no encontrado: " + nombre);
+    }
+
+    public void imprimir() {
+        for (Estudiante estudiante : estudiantes) {
+            estudiante.imprimir();
+        }
+    }
+
+    public List<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+}
